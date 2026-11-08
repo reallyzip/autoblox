@@ -6,7 +6,7 @@
 
 ## 0. The two launch prerequisites
 
-**Download experience — live and checked 2026-11-07:** [full toolkit ZIP](https://github.com/reallyzip/autoblox/releases/download/v0.3.0-preview/autoblox-full-toolkit-v0.3.0-preview.zip), [master skill ZIP](https://github.com/reallyzip/autoblox/releases/download/v0.3.0-preview/autoblox-master-skill-v0.3.0-preview.zip), and [release notes + checksums](https://github.com/reallyzip/autoblox/releases/tag/v0.3.0-preview). These links point to actual assets on the published prerelease. The `releases/latest` endpoint may omit prereleases; link to the explicit tag until a stable release exists.
+**Download experience — live and checked 2026-11-07:** [full toolkit ZIP](https://github.com/reallyzip/autoblox/releases/download/autoblox-v0.3.0/autoblox-full-toolkit-v0.3.0-preview.zip), [master skill ZIP](https://github.com/reallyzip/autoblox/releases/download/autoblox-v0.3.0/autoblox-master-skill-v0.3.0-preview.zip), and [release notes + checksums](https://github.com/reallyzip/autoblox/releases/tag/autoblox-v0.3.0). These links point to uploaded assets on the published `autoblox-v0.3.0` release. The toolkit remains a preview in capability, even though GitHub lists this release as non-prerelease.
 
 **GitHub topics — repository owner action required:** GitHub repository About panel → gear icon → Topics → add the list below → Save changes. Alternatively, with a locally authenticated GitHub CLI, run `gh api -X PUT repos/reallyzip/autoblox/topics --input topics.json`, using the committed UTF-8 [`docs/github-topics.json`](github-topics.json) file from this repository. From the repo root, run: `gh api -X PUT repos/reallyzip/autoblox/topics --input docs/github-topics.json`. Alternatively, `gh repo edit reallyzip/autoblox --add-topic "roblox,roblox-studio,roblox-development,luau,game-development,game-dev,ai-coding,ai-agents,agent-skills,model-context-protocol,mcp,blender,codex,claude-code,cursor,github-copilot,open-source,game-development-tools"`. GitHub allows a maximum of 20 lowercase/hyphenated topics.
 
@@ -90,7 +90,7 @@ Prioritize micro-creators whose audiences actually build games. Look for Roblox 
 > It's a public preview, not a one-click finished-game generator. If you cover useful Roblox or GitHub tools, feel free to test it, break it, or compare it honestly with your existing workflow.
 >
 > Repo: https://github.com/reallyzip/autoblox
-> Downloads: https://github.com/reallyzip/autoblox/releases/tag/v0.3.0-preview
+> Downloads: https://github.com/reallyzip/autoblox/releases/tag/autoblox-v0.3.0
 >
 > No sponsorship or positive review expected. Feedback is welcome.
 
