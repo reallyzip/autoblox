@@ -231,6 +231,7 @@ Examples: Roblox networking and server authority, Luau, persistence, asset gener
 - [FAQ](docs/FAQ.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Launch, creator partnerships and discoverability plan](docs/LAUNCH_AND_DISCOVERY.md)
+- [Creator media kit](docs/CREATOR_MEDIA_KIT.md) · [30-day launch calendar](docs/30_DAY_LAUNCH_CALENDAR.md) · [Community showcases](https://github.com/reallyzip/autoblox/issues/new/choose)
 - [Contributing](CONTRIBUTING.md) · [Security policy](SECURITY.md) · [Code of Conduct](CODE_OF_CONDUCT.md)
 
 Run offline checks before opening an issue or submitting a pull request:
