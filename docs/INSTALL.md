@@ -4,8 +4,8 @@ AutoBlox is a local project template and AI-agent instruction set, not a binary 
 
 ## Choose a package
 
-- **Complete toolkit:** [AutoBlox full ZIP](https://github.com/reallyzip/autoblox/releases/download/v0.3.0-preview/autoblox-full-toolkit-v0.3.0-preview.zip) for starting fresh games.
-- **Skill only:** [Master skill ZIP](https://github.com/reallyzip/autoblox/releases/download/v0.3.0-preview/autoblox-master-skill-v0.3.0-preview.zip) for an existing repo.
+- **Complete toolkit:** [AutoBlox full ZIP](https://github.com/reallyzip/autoblox/releases/download/autoblox-v0.3.0/autoblox-full-toolkit-v0.3.0-preview.zip) for starting fresh games.
+- **Skill only:** [Master skill ZIP](https://github.com/reallyzip/autoblox/releases/download/autoblox-v0.3.0/autoblox-master-skill-v0.3.0-preview.zip) for an existing repo.
 - **Git clone:** `git clone https://github.com/reallyzip/autoblox.git` then `cd autoblox`.
 
 Both ZIP links are live in the published v0.3.0-preview release. GitHub's Code → Download ZIP is an alternative for browsing the repository source.
