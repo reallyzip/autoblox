@@ -1,7 +1,7 @@
 # AutoBlox creator media kit
 
 **Public repo:** https://github.com/reallyzip/autoblox  
-**Download:** https://github.com/reallyzip/autoblox/releases/tag/v0.3.0-preview  
+**Download:** https://github.com/reallyzip/autoblox/releases/tag/autoblox-v0.3.0  
 **License:** MIT ([LICENSE](../LICENSE))  
 **Artwork:** [AutoBlox social preview](../assets/autoblox-social-preview.png) and [banner](../assets/autoblox-banner.svg)  
 **Status:** Public preview; agent-to-Studio/Blender end-to-end operation varies by tools, permissions and hardware.
