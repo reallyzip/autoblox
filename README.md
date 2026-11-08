@@ -40,13 +40,13 @@ It is built for people making their **first Roblox game** and creators building 
 
 ## Download
 
-**Recommended:** [Complete AutoBlox Toolkit (ZIP)](https://github.com/reallyzip/autoblox/releases/download/v0.3.0-preview/autoblox-full-toolkit-v0.3.0-preview.zip)
+**Recommended:** [Complete AutoBlox Toolkit (ZIP)](https://github.com/reallyzip/autoblox/releases/download/autoblox-v0.3.0/autoblox-full-toolkit-v0.3.0-preview.zip)
 
-**Existing projects:** [Master Skill Only (ZIP)](https://github.com/reallyzip/autoblox/releases/download/v0.3.0-preview/autoblox-master-skill-v0.3.0-preview.zip)
+**Existing projects:** [Master Skill Only (ZIP)](https://github.com/reallyzip/autoblox/releases/download/autoblox-v0.3.0/autoblox-master-skill-v0.3.0-preview.zip)
 
-[Release notes & checksums](https://github.com/reallyzip/autoblox/releases/tag/v0.3.0-preview) · [Browse source code](https://github.com/reallyzip/autoblox) · [All releases](https://github.com/reallyzip/autoblox/releases)
+[Release notes & checksums](https://github.com/reallyzip/autoblox/releases/tag/autoblox-v0.3.0) · [Browse source code](https://github.com/reallyzip/autoblox) · [All releases](https://github.com/reallyzip/autoblox/releases)
 
-**Available now:** Both ZIPs and the SHA-256 checksum file are published in the [v0.3.0-preview release](https://github.com/reallyzip/autoblox/releases/tag/v0.3.0-preview). This is a preview toolkit: live end-to-end production across all agents is not yet certified.
+**Available now:** Both ZIPs and the SHA-256 checksum file are published in the [v0.3.0-preview release](https://github.com/reallyzip/autoblox/releases/tag/autoblox-v0.3.0). This is a preview toolkit: live end-to-end production across all agents is not yet certified.
 
 ## Quick start
 
@@ -59,7 +59,7 @@ git clone https://github.com/reallyzip/autoblox.git
 cd autoblox
 ```
 
-Or download and extract the complete toolkit ZIP from [Releases](https://github.com/reallyzip/autoblox/releases/tag/v0.3.0-preview).
+Or download and extract the complete toolkit ZIP from [Releases](https://github.com/reallyzip/autoblox/releases/tag/autoblox-v0.3.0).
 
 **2. Scaffold a fresh Roblox game:**
 
