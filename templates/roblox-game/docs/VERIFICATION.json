@@ -1,0 +1,22 @@
+{
+  "project": "{{GAME_NAME}}",
+  "source_commit": null,
+  "private_place_id": null,
+  "private_published_version": null,
+  "status": "NOT_READY",
+  "public_release_authorized": false,
+  "gates": {
+    "source_build": {"status": "NOT_RUN", "evidence": [], "note": ""},
+    "complete_solo_loop": {"status": "NOT_RUN", "evidence": [], "note": ""},
+    "multiplayer_or_na": {"status": "NOT_RUN", "evidence": [], "note": ""},
+    "security": {"status": "NOT_RUN", "evidence": [], "note": ""},
+    "persistence_or_na": {"status": "NOT_RUN", "evidence": [], "note": ""},
+    "asset_integrity": {"status": "NOT_RUN", "evidence": [], "note": ""},
+    "ui_controls": {"status": "NOT_RUN", "evidence": [], "note": ""},
+    "device_performance": {"status": "NOT_RUN", "evidence": [], "note": ""},
+    "private_build_parity": {"status": "NOT_RUN", "evidence": [], "note": ""}
+  },
+  "known_critical_issues": [],
+  "known_high_issues": [],
+  "limitations": ["No runtime tests have been performed."]
+}

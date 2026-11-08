@@ -1,0 +1,17 @@
+# Credentials, local state and unnecessary generated files
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+!.env.example
+.worktrees/
+*.rbxl.lock
+*.rbxlx.lock
+# Local MCP connection settings can include machine-specific paths/secrets.
+.mcp.json
+.cursor/mcp.json
+.vscode/mcp.json
+.gemini/settings.json
+*.bak

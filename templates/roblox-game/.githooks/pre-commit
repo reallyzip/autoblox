@@ -1,0 +1,5 @@
+#!/bin/sh
+# OPTIONAL, opt in only with: git config core.hooksPath .githooks
+# Local-only structural check. No network, installs, account actions or publishing.
+set -eu
+python3 scripts/verify_game.py

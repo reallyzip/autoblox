@@ -1,0 +1,5 @@
+---
+description: Roblox Studio Architect local-first game production workflow
+alwaysApply: true
+---
+Follow `AGENTS.md`, the approved project documents, and `.agents/skills/roblox-studio-architect/SKILL.md`. First-run wizard: `python3 .agents/skills/roblox-studio-architect/scripts/environment_setup.py --project . --agent cursor --interactive` after offering/obtaining consent. Studio and Blender MCP need actual read-only tool-call verification; configured is not connected. Never publish publicly without approval.

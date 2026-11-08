@@ -1,0 +1,36 @@
+name: Bug report
+description: Report a reproducible toolkit, setup, scaffold or skill defect
+title: "bug: "
+labels: [bug]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe actual and expected behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include the exact command and output (redact tokens and personal paths).
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Operating system
+      options: [Windows, macOS, Linux, Other]
+    validations:
+      required: true
+  - type: input
+    id: agent
+    attributes:
+      label: AI coding agent and version
+      placeholder: e.g. Codex CLI, Claude Code, Cursor
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification evidence
+      description: Say whether this is offline, Studio emulator, actual Studio multiplayer, or a physical device.

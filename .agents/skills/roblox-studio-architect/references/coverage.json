@@ -1,0 +1,737 @@
+[
+  {
+    "slug": "audio-design",
+    "source": "awesome-gamedev/audio-design",
+    "when": "Audio, voice, music, ambience, feedback or loudness tasks",
+    "goal": "Make events recognizable, intelligible and comfortable at varied volume settings.",
+    "steps": [
+      "Inventory audio emitters, sound ownership, and existing volume preferences before making new assets. Separate music, ambience, UI cues and spatial gameplay effects by intent.",
+      "Create an audio event matrix: source, trigger, priority, audience, variants, max simultaneity and cleanup owner. Use native Sound/SoundGroup behavior and approved assets.",
+      "Duck or deprioritize nonessential audio when safety-critical cues or teammate messages are active. Provide mute and reduced-effects preferences where relevant.",
+      "Prefer a few original layered cues over dozens of repeated generic stock sounds; vary sample or pitch mildly without changing the meaning of an alert.",
+      "Keep playback client-presentational when possible; only server-confirmed game state may trigger rewarding or consequential sounds."
+    ],
+    "proof": [
+      "Solo and two-client audible event ordering, mute/reset and repeated-shift cleanup.",
+      "Document source/license of every imported sound and measure actual playback behavior rather than asserting quality from file presence."
+    ],
+    "anti": "Do not let music drown spoken/gameplay information or make an audio cue grant rewards."
+  },
+  {
+    "slug": "camera-systems",
+    "source": "awesome-gamedev/camera-systems",
+    "when": "Camera movement, framing, obstruction, motion sickness or respawn issues",
+    "goal": "Keep important action readable while respecting default Roblox camera controls.",
+    "steps": [
+      "State the viewing contract: first or third person, action framing, allowed zoom, lock-on if any, and mobile/controller parity.",
+      "Use the Roblox camera module/default camera when it already satisfies the contract; add owned offsets rather than replacing the whole system.",
+      "Calculate damping from delta time, maintain clamped motion, and solve obstruction without piercing walls or losing aim.",
+      "Keep cosmetic shake and recoil independent from authoritative movement; make additive contributions reversible and coexist with other camera systems.",
+      "Provide reduced motion and avoid per-frame event connection churn."
+    ],
+    "proof": [
+      "Repeated jump/landing and respawn test verifies camera returns to baseline without drift.",
+      "Observe desktop/controller/touch rotation and enclosed spaces at low and high frame rates."
+    ],
+    "anti": "Never write camera offsets without an explicit restore path or treat render events as a source of gameplay truth."
+  },
+  {
+    "slug": "create-game-assets",
+    "source": "awesome-gamedev/create-game-assets",
+    "when": "Any concept art, meshes, textures, sound assets, props or character appearance",
+    "goal": "Convert a coherent art direction into reusable, provenanced in-game assets.",
+    "steps": [
+      "Inventory existing assets and establish an art bible: silhouettes, materials, palette, camera, target devices and genre-specific visual priorities.",
+      "Choose a representative hero asset and review it in-game before scaling production. Concept images are references, not geometry or proof of integration.",
+      "Maintain an asset ledger including author, origin/license, editable source, export, target Roblox template, dimensions and expected draw cost.",
+      "Prefer Blender for meaningful custom 3D modeling; prefer Roblox primitives and native UI for simpler structures. Normalize pivots, attachments and units.",
+      "Create asset families with intentional modular reuse, then integrate through the chosen authoritative source pipeline."
+    ],
+    "proof": [
+      "Validate exports, material mapping, alignment, lighting, silhouette legibility and import ownership in actual Roblox Studio.",
+      "Produce a contact sheet or viewport evidence plus the manifest for every completed asset family."
+    ],
+    "anti": "Never copy unlicensed Toolbox/script content or equate a nice render with a functional game asset."
+  },
+  {
+    "slug": "game-feel",
+    "source": "awesome-gamedev/game-feel",
+    "when": "Actions mechanically work but feel unresponsive or unsatisfying",
+    "goal": "Give important actions timely feedback without changing server decisions.",
+    "steps": [
+      "Identify meaningful player actions and rank their importance: input acknowledgment, task progress, success, failure and danger.",
+      "For each action choose at most a few matching feedback channels: sound, animation, light, UI, haptics, particles or a very small camera response.",
+      "Attach feedback to a known authoritative result for rewards, combat outcomes and work completion; speculative client previews must remain cosmetic.",
+      "Tune response timing and intensity on the lowest intended device tier. Add reduced-motion and low-effects options.",
+      "Compare adjacent actions and remove feedback that masks danger, reduces readability or becomes tiring after a full session."
+    ],
+    "proof": [
+      "Record input-to-feedback behavior, repeated-action spam behavior and independent reduced-effects verification.",
+      "Test actual controller, touch and multiplayer observer views when available."
+    ],
+    "anti": "Do not freeze a shared simulation to sell a local impact or stack uncontrolled camera shake."
+  },
+  {
+    "slug": "game-ui-ux",
+    "source": "awesome-gamedev/game-ui-ux",
+    "when": "Screen hierarchy, onboarding, menu flow or accessibility decisions",
+    "goal": "Make the next action obvious and every important screen navigable.",
+    "steps": [
+      "Map the first-session path from join through first success and next-round choice; define the job of each screen and remove duplicate decisions.",
+      "Build one coherent typographic and spatial system: information priority, contrast, state change, contextual controls and safe margins.",
+      "Design without relying on mouse hover or fixed desktop pixels. Plan gamepad focus, touch targets, text scaling and keyboard dismissal.",
+      "Use notifications sparingly: critical events interrupt, routine results queue, and player actions receive feedback where attention already is.",
+      "For new players introduce one essential mechanic at a time; leave advanced details accessible without blocking play."
+    ],
+    "proof": [
+      "Complete a no-instructions first-session walkthrough with the intended devices.",
+      "Capture viewport evidence at phone portrait/landscape if supported, tablet, desktop and controller."
+    ],
+    "anti": "Never require precision clicking to complete gameplay or hide essential state inside decorative widgets."
+  },
+  {
+    "slug": "input-systems",
+    "source": "awesome-gamedev/input-systems",
+    "when": "Keyboard, mouse, touch, controller, keybinding or action-state tasks",
+    "goal": "Maintain a single accessible action contract across inputs.",
+    "steps": [
+      "List game verbs before keys: move, interact, jump, sprint, open menu, use ability; separate press, hold, toggle and analog intent.",
+      "Prefer Roblox-native character controls and ContextActionService. Preserve platform-reserved controls and existing text-chat focus.",
+      "Route intents into validated server actions only when gameplay authority is needed; leave visual-only actions local.",
+      "Handle device switching, input cancellation, death, tool ownership, menus, focus loss and respawn as explicit state transitions.",
+      "Map mobile controls around thumb regions and test controller focus; avoid duplicate bindings that fire on one press."
+    ],
+    "proof": [
+      "Action table plus real input test evidence for keyboard/mouse, gamepad and touch simulation.",
+      "Verify input while chat is focused, after a repair is canceled, and after a device switch."
+    ],
+    "anti": "Never equate a synthetic remote call with a real button-press or assume keyboard-only controls suffice."
+  },
+  {
+    "slug": "level-design",
+    "source": "awesome-gamedev/level-design",
+    "when": "Maps, missions, traversal, encounters, pacing or exploration layout",
+    "goal": "Make objectives traversable, readable, varied and appropriately paced.",
+    "steps": [
+      "Start with player movement dimensions, camera clearance and abilities. Translate those metrics into route widths, gaps and vertical access.",
+      "Block out the full critical path using simple geometry before visual detail. Add safe alternates when a moving door/elevator may fail.",
+      "Design a tension curve with breathing room, learning beats and a deliberate finale; avoid continuously maxed-out challenge.",
+      "Measure travel times to objectives, spawn-to-first-action and recovery routes rather than judging layout from overhead art.",
+      "Add landmarks, signage and environmental storytelling only after route accessibility and incident ownership are tested."
+    ],
+    "proof": [
+      "Trace every required mission path in solo and multiplayer, including obstruction and respawn.",
+      "Record travel distances/times from authoritative navigation points for tuning."
+    ],
+    "anti": "Never decorate over interaction envelopes or make required paths rely on random geometry that can soft-lock progress."
+  },
+  {
+    "slug": "performance-optimization",
+    "source": "awesome-gamedev/performance-optimization",
+    "when": "Slow frames, memory growth, network spikes or heavy asset scenes",
+    "goal": "Ship measurable improvements against explicit target hardware budgets.",
+    "steps": [
+      "Define target hardware tiers, scene, client count and frame/memory/network goals before optimizing.",
+      "Capture a baseline with Roblox MicroProfiler, Script Performance, network stats and memory tools where available.",
+      "Locate the dominant cost: scripts, physics, geometry/materials, UI, replication or asset loads. Fix that cost first.",
+      "Use pooling, event-driven updates, streaming, LOD and geometry reuse only when a measurement supports them.",
+      "Rerun the exact scenario after changes, preserve visual/play quality, and reject changes without convincing improvement."
+    ],
+    "proof": [
+      "Report before/after measurements, test platform, session duration and confidence limitations.",
+      "Observe long-session join/leave/respawn and real-client frame behavior if accessible."
+    ],
+    "anti": "Do not claim mobile optimization based on a powerful desktop Studio viewport."
+  },
+  {
+    "slug": "physics-tuning",
+    "source": "awesome-gamedev/physics-tuning",
+    "when": "Unstable objects, collision jitter, tunneling, mass or moving-platform tuning",
+    "goal": "Make physical behavior consistent and bounded under network conditions.",
+    "steps": [
+      "Choose whether the mechanic truly needs physics or should be scripted/anchored. Specify desired failure modes and interaction limits.",
+      "Declare collision groups and query policy separately. Preserve predictable assemblies, attachments and constraints.",
+      "Use server authority for consequential physics outcomes; understand when ownership and latency affect observed motion.",
+      "Measure velocities, body scale, contact stability and solver behavior under expected load before introducing new forces.",
+      "Tune one parameter at a time and ensure cleanup for temporary assemblies and constraints."
+    ],
+    "proof": [
+      "Solo/two-client collision observation and representative low/high velocity cases.",
+      "Check jitter after pause, respawn, teleport and ownership transfer."
+    ],
+    "anti": "Never use an old physics body mover or Touched-only hit logic without justified constraints and validation."
+  },
+  {
+    "slug": "procedural-gen",
+    "source": "awesome-gamedev/procedural-gen",
+    "when": "Random maps, spawns, encounters, loot or rotating content",
+    "goal": "Make procedural content reproducible, fair and verifiable.",
+    "steps": [
+      "Specify the seed source and ownership: match/server, player-specific, or common daily/weekly; never trust a client-chosen authoritative seed.",
+      "Generate pure data from a seeded RNG before instantiating geometry, then validate safety rules and budgets.",
+      "Check reachability, spawn clearance, loot distributions, enemy capacity and player-count adaptations.",
+      "Separate cosmetic variety from consequential randomness; use server-adjudicated outcomes and documented weighting.",
+      "Save the seed/parameters for reproducing difficult bug reports and retain deterministic fixture seeds."
+    ],
+    "proof": [
+      "Replay identical seeds with matching content and alternate seeds without invalid geometry.",
+      "Automate distribution and reachability checks across many representative seeds."
+    ],
+    "anti": "Never let unbounded random retries or global RNG create irreproducible soft-locks."
+  },
+  {
+    "slug": "roblox-characters",
+    "source": "awesome-gamedev/roblox-characters",
+    "when": "Avatars, rigs, animations, emotes, accessories, respawn and tools",
+    "goal": "Make characters predictable across spawn cycles, supported rigs and clients.",
+    "steps": [
+      "Define R6/R15 or custom-rig support explicitly and inspect current Humanoid/Animator, default Animate and avatar settings.",
+      "Separate player-scoped settings from character-scoped references; cancel pending operations on CharacterRemoving and check generation tokens after yielding.",
+      "Use attachments/accessory fitting and compatible Animator tracks; make ownership priority explicit among movement, tools, repairs and emotes.",
+      "Prepare graceful fallback for unsupported rig/asset IDs, imperfect hair clearance and missing accessories.",
+      "Keep cosmetic animation client-side when safe; never let a visual pose decide authoritative gameplay outcomes."
+    ],
+    "proof": [
+      "Spawn, rapid respawn, death, tool swap, outfit change and peer-observer animation matrix.",
+      "Verify in-game front/side/back silhouettes and accessory collision/clipping across representative avatars."
+    ],
+    "anti": "Never capture a Humanoid once and assume it remains valid after respawn."
+  },
+  {
+    "slug": "roblox-datastores",
+    "source": "awesome-gamedev/roblox-datastores",
+    "when": "Saving player progression, inventory, unlocks, economy or settings",
+    "goal": "Protect owned player data across failures, retries and cross-server sessions.",
+    "steps": [
+      "Define versioned server-owned schema, bounded values, migration rules and data that must never be client-trusted.",
+      "Use UpdateAsync transactions for mutation, appropriate session ownership/leasing, idempotent receipt identifiers and bounded retries.",
+      "Separate Studio test stores or test backends from production. Never accidentally modify live player data during QA.",
+      "Define on-join, delayed load, autosave, disconnect and shutdown behavior, including outage and owner-loss states.",
+      "Publish confirmed save status to UI without fabricating successful writes or discarding valid existing progress."
+    ],
+    "proof": [
+      "Migration, duplicate purchase, reconnect, cross-server, rapid leave and injected DataStore failure tests.",
+      "Persisted totals must match transaction receipts after simulated retries and server restart."
+    ],
+    "anti": "Never overwrite valid production data with empty defaults because a read failed."
+  },
+  {
+    "slug": "roblox-luau",
+    "source": "awesome-gamedev/roblox-luau",
+    "when": "Adding or changing Roblox Luau scripts, modules and services",
+    "goal": "Keep a maintainable server/client/shared structure with testable contracts.",
+    "steps": [
+      "Identify execution location and authoritative owner before writing code. Inspect neighboring modules, remote definitions and conventions.",
+      "Use typed Luau where it improves safety and meaningful module boundaries without introducing needless wrappers.",
+      "Prefer events and bounded tasks over uncontrolled loops; disconnect signals and destroy temporary instances on lifecycle transitions.",
+      "Validate every client-to-server request and avoid trusting replicated attributes written or proposed by clients.",
+      "Write or adapt focused tests around state transitions and integrate via the existing Rojo/Studio source path."
+    ],
+    "proof": [
+      "StyLua/lint/type checks if available, Rojo build, Studio Output and representative Server & Clients tests.",
+      "Report exact changed modules and replayable test cases."
+    ],
+    "anti": "Never place a client-authoritative inventory, damage or currency operation in LocalScripts."
+  },
+  {
+    "slug": "roblox-networking",
+    "source": "awesome-gamedev/roblox-networking",
+    "when": "Remotes, replication, multiplayer consistency, streaming or anti-exploit review",
+    "goal": "Make all consequential decisions server-owned and safe under unreliable input.",
+    "steps": [
+      "Inventory every RemoteEvent/RemoteFunction and its caller; write an input and output contract with allowed types and maximum sizes.",
+      "For requests validate membership, phase, state, distance, ownership, cooldowns, monotonically increasing identifiers and target existence.",
+      "Keep arbitrary client Instances, positions, prices, damage and rewards out of authoritative trust paths; resolve targets server-side.",
+      "Minimize broadcast scope and frequency. Account for streaming, out-of-order messages, temporary disconnection and round resets.",
+      "Use idempotent and fenced operations when concurrent actions or economic writes can race."
+    ],
+    "proof": [
+      "Test expected and malicious requests, rate-limit abuse, simultaneous players, joining mid-round and disconnects.",
+      "Validate cross-client agreement by reading server-owned state, not by trusting locally displayed UI."
+    ],
+    "anti": "Never treat server-side type checks alone as authorization or let client-provided results settle wins and rewards."
+  },
+  {
+    "slug": "roblox-physics",
+    "source": "awesome-gamedev/roblox-physics",
+    "when": "Assemblies, raycasts, overlap queries, collision flags, network ownership",
+    "goal": "Make geometric interactions safe, precise and affordable.",
+    "steps": [
+      "Choose raycast, overlap, constraints or contact events according to required accuracy and trust, not convenience.",
+      "Create a clear collision matrix; distinguish CanCollide, CanTouch and CanQuery for every important part.",
+      "Filter raycasts/overlap targets to valid gameplay objects and check distances and line of sight on the server where needed.",
+      "Keep cosmetic meshes noncollidable when dedicated bounds/collision proxies provide the actual gameplay geometry.",
+      "Bound query frequency and instance lifetimes, and test moving assemblies at expected speeds."
+    ],
+    "proof": [
+      "Server/client geometry agreement and no unexpected collisions in critical routes.",
+      "Confirm physics ownership, constraints and reset cleanup in multi-client Studio."
+    ],
+    "anti": "Never use Workspace visual prop placement as an authoritative gameplay hitbox by accident."
+  },
+  {
+    "slug": "roblox-studio-workflow",
+    "source": "awesome-gamedev/roblox-studio-workflow",
+    "when": "Editing live Studio places, Rojo mapping, imported assets or publishing private QA",
+    "goal": "Keep one source of truth and distinguish actual runtime evidence from offline success.",
+    "steps": [
+      "Before modifying a place identify active DataModel, universe/place identity, audience and authoritative source (Rojo versus Studio).",
+      "Keep production code and templates in source control; treat disposable Studio fixtures and temporary Workspace assets as transient.",
+      "Use native Studio for hierarchy, import, input simulation, runtime Output and Server & Clients validation. Map tools to correct execution contexts.",
+      "Preserve a one-editor/one-Studio-operator lock during automated work; reconcile saved source after native editor actions.",
+      "Before any private publication compare all production scripts/assets to intended source, save a recovery copy and record actual published version."
+    ],
+    "proof": [
+      "Pass a verification ladder: static/build, solo, multi-client, cross-device emulation, actual device if available, private cloud save.",
+      "Record which environment produced each result and never promote waived tests into passes."
+    ],
+    "anti": "Never publish publicly based on private QA evidence or confuse a saved local place with a published experience."
+  },
+  {
+    "slug": "roblox-ui",
+    "source": "awesome-gamedev/roblox-ui",
+    "when": "Creating ScreenGuis, menus, HUD, settings, tooltips, shops or chat-related UI",
+    "goal": "Make all user-facing interface states editable, usable and resilient.",
+    "steps": [
+      "Inspect existing StarterGui/PlayerGui templates and UI ownership; avoid rebuilding every screen with monolithic scripts.",
+      "Use scalable UDim2 layouts, constraints, safe-area-aware insets and design tokens; account for longer labels and localization.",
+      "Keep UI state a presentation of server-confirmed facts where needed, and use Activated plus explicit gamepad focus handling.",
+      "Keep screen transitions reversible, distinguish loading/failed/confirmed operations and release event connections on teardown.",
+      "Treat TextChatService and Roblox core UI restrictions as platform responsibilities; style without bypassing filtering or privacy."
+    ],
+    "proof": [
+      "Keyboard, phone, gamepad focus, screen resize, respawn and multiple-open cycles.",
+      "Check clipping, contrast, readable text, touch target sizes and emergency message priority."
+    ],
+    "anti": "Never bind purchase success to a local button click or assume UI success means a server operation persisted."
+  },
+  {
+    "slug": "router",
+    "source": "awesome-gamedev/router",
+    "when": "Choosing specialist playbooks for a new task or project phase",
+    "goal": "Load only the guidance needed rather than every reference at once.",
+    "steps": [
+      "Classify work by task risk (design, implementation, bug, security, art, release) and Roblox subsystem before selecting references.",
+      "Pick one primary discipline playbook plus at most two supporting ones; add security and verification for state-changing paths.",
+      "Reuse selection for adjacent tasks; reclassify only when the work genuinely pivots.",
+      "If a specialist reference or connector is unavailable, use the existing engine workflow and state the limitation rather than hunting indefinitely.",
+      "Never allow a generic framework recipe to override the project-specific AGENTS.md or current official Roblox API behavior."
+    ],
+    "proof": [
+      "Explain selected playbooks in one concise routing note when it materially changes the plan.",
+      "Confirm no conflicting source ownership or duplicate tool installation was introduced."
+    ],
+    "anti": "Do not load the entire playbook library into context or start from a skill search on every minor edit."
+  },
+  {
+    "slug": "save-systems",
+    "source": "awesome-gamedev/save-systems",
+    "when": "Schema evolution, backups, restore, settings or checkpoint persistence",
+    "goal": "Make saved state small, versioned, migratable and recoverable.",
+    "steps": [
+      "Separate transient session state from durable server-owned state and identify data-loss impact of every change.",
+      "Define schema version, default policy, validation and pure migration functions before adding new fields.",
+      "Use idempotent writes and version-aware conflict handling; for Roblox online progression, defer to Roblox DataStore semantics rather than filesystem rename patterns.",
+      "Create backup/restore and rollback plans for incompatible changes. Avoid storing Instance references as profile data.",
+      "Use load failure and stale-data states in UI rather than silently resetting a profile."
+    ],
+    "proof": [
+      "Test fresh, old schema, malformed, missing, partial-failure and rollback scenarios.",
+      "Verify cross-server re-entry and saved inventory invariants under duplicate operations."
+    ],
+    "anti": "Never confuse local file durability with Roblox cloud persistence or assume a DataStore outage is a new-user profile."
+  },
+  {
+    "slug": "lean-implementation",
+    "source": "Ponytail/ponytail (lite-full-ultra concepts)",
+    "when": "Choosing implementations, dependencies, complexity and refactors",
+    "goal": "Find the smallest end-to-end correct solution, not the smallest patch.",
+    "steps": [
+      "Before coding, trace the requested behavior across actual caller, server, client, tests, assets, UI, profile migrations and Studio deployment.",
+      "Compare reuse of an existing module or Roblox API against new code; choose the least complex approach that completes the contract.",
+      "Intensity levels are review depth, not permission to omit work: light for tiny UI text, standard for ordinary systems, intensive for risky multiplayer, persistence, migrations and release.",
+      "Make a bounded diff, then inspect broken callers and orphaned assets. Remove speculative abstractions and one-off libraries.",
+      "If a simplification reduces security, validation, accessibility, maintainability or data recoverability, reject it."
+    ],
+    "proof": [
+      "Diff reviewed for necessary changes, test evidence and rollback risk.",
+      "Rationale for any new dependency, service or abstraction."
+    ],
+    "anti": "Do not mistake fewer lines or fewer tests for better engineering."
+  },
+  {
+    "slug": "change-review",
+    "source": "Ponytail/ponytail-review",
+    "when": "Reviewing a patch, PR, feature or recent commit",
+    "goal": "Catch errors and unnecessary complexity before integration.",
+    "steps": [
+      "Identify the starting revision and proposed diff; read the full affected call chain and external contracts.",
+      "Check correctness, remote trust boundaries, concurrency, player profiles, initialization and teardown under expected load.",
+      "Look for unnecessary wrappers, duplicated state, new dependencies and abandoned flags, then propose removal only if safe.",
+      "Assign each finding a severity, file location, reproduction or proof, and minimally sufficient correction.",
+      "Review tests independently of the implementer and rerun cases after high-risk fixes."
+    ],
+    "proof": [
+      "Actionable findings with grounded paths and priority; a clean report states exactly what was checked.",
+      "Security, persistence and multi-client risks verified independently."
+    ],
+    "anti": "Do not write a style-only critique while ignoring exploitable or data-loss bugs."
+  },
+  {
+    "slug": "whole-repo-audit",
+    "source": "Ponytail/ponytail-audit",
+    "when": "Auditing a full Roblox project or inherited repository",
+    "goal": "Identify product, architectural and production risks in ranked order.",
+    "steps": [
+      "Start with README, AGENTS, Rojo mapping, build tools, critical gameplay flows, profiles, remotes, CI and private publication trail.",
+      "Map modules and their ownership to reveal duplicated managers, circular requires, dead assets and unbounded services.",
+      "Sample high-consequence code deeply: authoritative combat/rewards, client remotes, data stores, loops, memory and asset provenance.",
+      "Distinguish confirmed defects from concerns requiring Studio reproduction. Avoid a superficial list of everything that could happen.",
+      "Give a ranked repair backlog with a concise deletion/merge suggestion only where behavior can be preserved."
+    ],
+    "proof": [
+      "Audit scope, commit inspected, missing evidence and priority-ranked findings.",
+      "A regression plan for any recommended deletion or major consolidation."
+    ],
+    "anti": "Never rewrite an entire game merely because its original organization differs from your preferred architecture."
+  },
+  {
+    "slug": "technical-debt-ledger",
+    "source": "Ponytail/ponytail-debt",
+    "when": "Collecting deliberate shortcuts, waivers and post-release debt",
+    "goal": "Make compromises visible, time-bounded and actionable.",
+    "steps": [
+      "Search TODO, FIXME, waiver records, deferred animation slots, compatibility fallbacks and release blockers.",
+      "For each entry record source file, reason, user impact, current risk, date, owner and objective exit criteria.",
+      "Separate acceptable aesthetic polish debt from security, player-data and public-release blockers.",
+      "Link each debt item to a tested project milestone; remove entries only after evidence of resolution.",
+      "Keep the list short and factual so it guides releases rather than becoming a duplicate roadmap."
+    ],
+    "proof": [
+      "Debt count by severity plus exact references and next action.",
+      "No silent closure of waived or untested items."
+    ],
+    "anti": "Never use a TODO comment to excuse a known critical release blocker."
+  },
+  {
+    "slug": "measured-impact",
+    "source": "Ponytail/ponytail-gain",
+    "when": "Assessing refactor or optimization gains",
+    "goal": "Measure the effect of lean decisions instead of claiming imaginary savings.",
+    "steps": [
+      "Choose comparable metrics before change: file/module count, affected calls, test time, load latency, CPU, memory or frame stability.",
+      "Compare equal builds and scenes with consistent avatar/device/client counts.",
+      "Account for code removed and new maintenance burden while retaining validation and user-facing quality.",
+      "Record test environment and uncertainty; if metrics cannot be collected, state that they are unknown.",
+      "Do not perform optimization work solely to improve the scoreboard."
+    ],
+    "proof": [
+      "Table of baseline, follow-up, delta, method and any unmeasured variables.",
+      "Reproduction commands when measurements were automatic."
+    ],
+    "anti": "Never fabricate performance percentages or imply an external benchmark applies to this project."
+  },
+  {
+    "slug": "engineering-mode-guide",
+    "source": "Ponytail/ponytail-help",
+    "when": "Selecting development review depth or explaining the system",
+    "goal": "Choose the appropriate diligence without changing user permissions.",
+    "steps": [
+      "Light mode: contained copy/style edit with no persistence, networking or new authorization paths.",
+      "Standard mode: most implementation tasks; audit caller impact, tests, recoverability and UI parity.",
+      "Intensive mode: economy, anti-exploit, networking, schema migration, cross-device controls, public launch and major architecture.",
+      "Every mode retains correctness, security, testing, accessibility and data safety. Intensive adds independent review and broader scenarios.",
+      "Choose modes from task risk, not how many tokens are left."
+    ],
+    "proof": [
+      "Record risk level and why in the task plan; downgrade only after proven lower risk."
+    ],
+    "anti": "Modes must never silently change hooks, marketplace permissions or publish access."
+  },
+  {
+    "slug": "concise-final-report",
+    "source": "Caveman/caveman",
+    "when": "Writing final status, evidence or handoff summaries",
+    "goal": "Tell an owner what changed, what passed, what remains and what to do next.",
+    "steps": [
+      "Start with actual status: complete, partial, blocked or not started, never a ceremonial claim.",
+      "Identify changed work, source revision, runtime/publication identity and the smallest relevant test results.",
+      "Preserve exact commands, filenames, flags, error text and negations even in short summaries.",
+      "Separate observed facts from plans and unverified assumptions. Give one concrete next action when necessary.",
+      "For irreversible actions, permissions and security concerns favor full sentences and explicit cautions."
+    ],
+    "proof": [
+      "An unfamiliar developer can resume using the report without re-interviewing the implementer."
+    ],
+    "anti": "Never shorten technical payloads or let compactness hide missing verification."
+  },
+  {
+    "slug": "concept-workshop",
+    "source": "Superpowers/brainstorming",
+    "when": "Unclear or ambitious game ideas, new creative direction or major feature choices",
+    "goal": "Reach an approved, testable game identity before autonomous building.",
+    "steps": [
+      "Inspect any existing project and the user's specific inspirations before proposing unrelated concepts.",
+      "Ask focused questions in a conversation rather than a massive form; separate goals, audience, genre, replay loop, camera, platforms, budget and taste.",
+      "Present 2\u20133 coherent alternatives and evaluate scope, originality, player promise, competitive identity and Roblox policy risks.",
+      "Summarize final decisions, rejected ideas and unresolved choices into an owner-readable creative brief and acceptance tests.",
+      "Ask for approval of the complete directive once; allow safe implementation autonomy after approval within its boundaries."
+    ],
+    "proof": [
+      "Approved concept brief with loop, one polished vertical slice, constraints and no unapproved speculative mechanics.",
+      "Clear examples of what the game is and is not."
+    ],
+    "anti": "Do not start coding based on a vague mood board or pretend that auto-generated art establishes gameplay feasibility."
+  },
+  {
+    "slug": "independent-agent-routing",
+    "source": "Superpowers/dispatching-parallel-agents",
+    "when": "Parallel investigations, assets or testing with non-overlapping ownership",
+    "goal": "Get genuine independent progress without clobbering shared files.",
+    "steps": [
+      "Decompose the work into tasks with separate files, outputs and contracts; identify serial dependencies before dispatch.",
+      "Give each agent exact scope, baseline revision, acceptance, evidence format and prohibited changes.",
+      "Allow parallel analysis broadly; allow parallel edits only with isolated worktrees or explicit file ownership.",
+      "Centralize source integration and run a fresh combined test after all agent results arrive.",
+      "If subagents are unavailable, execute the same ownership plan sequentially instead of claiming parallel work."
+    ],
+    "proof": [
+      "Owner/agent matrix showing outputs, changed paths, conflicts, tests and integration commit.",
+      "Combined regression results beyond individual agent success claims."
+    ],
+    "anti": "Do not assign two editors to the same Roblox Studio place or module concurrently."
+  },
+  {
+    "slug": "plan-execution",
+    "source": "Superpowers/executing-plans",
+    "when": "Implementing an accepted multi-step task plan",
+    "goal": "Complete scoped increments with checkpoints instead of endless planning.",
+    "steps": [
+      "Confirm the approved design, current HEAD, clean or preserved worktree, environment and required dependencies.",
+      "For each task: reproduce expected behavior, create a failing test if practical, implement bounded changes, run tests and record proof.",
+      "Mark progress only after tests, diff review and source integration; keep next-step context in a durable ledger.",
+      "Select any optional tools once, then focus on implementation. Replan if evidence contradicts the spec rather than forcing broken work.",
+      "At a deadline, checkpoint partial changes safely, preserve exact resume instructions and stop further edits."
+    ],
+    "proof": [
+      "Progress ledger with complete/partial/blocked state, commit identities and commands.",
+      "The latest working checkpoint can be restored without reconstructing conversation history."
+    ],
+    "anti": "Never mark a task done because code was written, an agent said done or a local mock passed."
+  },
+  {
+    "slug": "branch-closeout",
+    "source": "Superpowers/finishing-a-development-branch",
+    "when": "Committing, pushing, merging, creating PRs or finalizing a development branch",
+    "goal": "Preserve history and hand off a verified, reviewable change set.",
+    "steps": [
+      "Inspect git status, diff and branch tracking; run the required tests before staging.",
+      "Confirm destination branch and user authorization for push/PR; never infer permission to force-push or publish a Roblox place.",
+      "Create a focused commit with a meaningful summary and evidence reference; push only after verifying no secrets or generated junk.",
+      "Report commit SHA, branch, remote, push status and any known conflict. Do not erase uncommitted other-author work.",
+      "Keep Roblox place publication, Git push and production launch as three separate operations with separate proof."
+    ],
+    "proof": [
+      "Exact commit SHA, push output and recovery instructions.",
+      "Post-integration regression results when merging or rebasing."
+    ],
+    "anti": "Never call an unpublished place deployed, or treat a GitHub push as a Roblox production release."
+  },
+  {
+    "slug": "review-feedback-evaluation",
+    "source": "Superpowers/receiving-code-review",
+    "when": "Handling peer, user or automated code-review suggestions",
+    "goal": "Use reviewer feedback as evidence, not unquestionable authority.",
+    "steps": [
+      "Read the entire report, locate the actual code path and reproduce any claimed defect where possible.",
+      "Classify correctness, safety, performance, architecture and preference suggestions separately.",
+      "Accept valid changes, challenge unsupported refactors with measurements, and ask only for genuinely ambiguous owner choices.",
+      "Implement accepted findings one at a time with tests; make exceptions explicit and track rejected points.",
+      "Keep the reply factual and avoid performative agreement."
+    ],
+    "proof": [
+      "Traceable disposition for each issue: fixed, rejected with reason, deferred with owner decision, or blocked.",
+      "New verification after each high-risk correction."
+    ],
+    "anti": "Never add a new dependency or rewrite working code solely because a generic reviewer preferred it."
+  },
+  {
+    "slug": "request-independent-review",
+    "source": "Superpowers/requesting-code-review",
+    "when": "Before significant commits, merges or game release milestones",
+    "goal": "Find defects that the implementer may have normalized.",
+    "steps": [
+      "Give reviewers requirements, base/head revisions, changed files, verified cases and the areas where confidence is low.",
+      "Use at least one reviewer focused on exploits, persistent data and concurrency for consequential multiplayer changes.",
+      "Ask for file-and-line-grounded findings with severity, reproduction or reasoning and test recommendations.",
+      "Reconcile feedback against the actual source; fix critical/high issues and rerun tests.",
+      "For a release review, examine end-to-end first-session play and studio/publication parity, not just code style."
+    ],
+    "proof": [
+      "Independent review summary, issue dispositions and final pass/fail gate.",
+      "Explicit statement of coverage limits and reviewer independence."
+    ],
+    "anti": "Do not use an agent thumbs-up as proof that actual multiplayer or mobile tests ran."
+  },
+  {
+    "slug": "subagent-task-loop",
+    "source": "Superpowers/subagent-driven-development",
+    "when": "Delegating independent implementation tasks to Codex agents",
+    "goal": "Preserve fresh focus, source ownership and verifiable integration.",
+    "steps": [
+      "Split approved design into small deliverables with stable interfaces, filenames, test commands, and a clear handoff shape.",
+      "Assign one implementer and a distinct reviewer to high-risk tasks; worktrees or explicit no-overlap rules prevent collisions.",
+      "Require each implementer to return changed paths, tests run, unresolved failures and actual evidence.",
+      "Integrate only completed revisions, perform a fresh combined test, record task state and release file ownership.",
+      "Use sequential execution when tools cannot provide independent agents or isolation."
+    ],
+    "proof": [
+      "Progress ledger and supervisor acceptance linked to exact commits and test reports.",
+      "No duplicate writes and no undisclosed bypass of project permissions."
+    ],
+    "anti": "Never let subagent prompts grant privileges beyond the owner's approved scope."
+  },
+  {
+    "slug": "root-cause-investigation",
+    "source": "Superpowers/systematic-debugging",
+    "when": "Bug, flake, crash, failing test, broken Studio behavior or regression",
+    "goal": "Understand the failure before changing the code.",
+    "steps": [
+      "Reproduce the issue and record exact inputs, client count, game state, device, error and revision.",
+      "Trace data and control flow from symptom to source across server/client boundary; compare a known-good checkpoint if available.",
+      "Write one falsifiable hypothesis and minimal probe; observe whether it explains the failure.",
+      "Fix the responsible cause with the smallest complete change, including affected callers and cleanup.",
+      "Rerun the reproduction and a neighboring regression test; remove probes and temporary fixtures."
+    ],
+    "proof": [
+      "Before/after reproduction, root-cause explanation, diff and verification environment.",
+      "Known remaining uncertainty clearly stated."
+    ],
+    "anti": "Do not apply a third speculative patch without investigating why earlier hypotheses failed."
+  },
+  {
+    "slug": "test-first-changes",
+    "source": "Superpowers/test-driven-development",
+    "when": "Feature logic, behavior changes, bug fixes or contract refactors",
+    "goal": "Define behavior in executable checks before trusting implementation.",
+    "steps": [
+      "State the user-visible behavior and server invariants; choose a small automated or isolated Studio fixture suited to the risk.",
+      "Create an initial check that fails for the intended reason or capture an existing failing reproduction.",
+      "Implement the minimum change, rerun the failing test, then run nearby regression cases.",
+      "Refactor duplication only after the behavior passes and remains understandable.",
+      "Where Studio-only visual behavior cannot be unit tested, define explicit manual/automated viewport acceptance before editing."
+    ],
+    "proof": [
+      "Failing baseline and passing follow-up with actual run output, plus runtime verification where required.",
+      "No false report of a failing test when the test never executed."
+    ],
+    "anti": "Tests that assert internal implementation details cannot substitute for gameplay or networking correctness."
+  },
+  {
+    "slug": "isolated-workspaces",
+    "source": "Superpowers/using-git-worktrees",
+    "when": "Parallel tasks, experiments, risky refactors or branch isolation",
+    "goal": "Keep experiments recoverable without corrupting the main working tree.",
+    "steps": [
+      "Inspect existing Git worktrees, uncommitted changes and repository policy before creating another workspace.",
+      "Prefer the active approved worktree; create a new one only when isolation adds value and a safe directory is available.",
+      "Use separate checkout/branch per isolated editor and share results through commits/patches, not simultaneous writes.",
+      "Run a clean baseline build and test in the new worktree before edits.",
+      "Keep worktrees until changes are integrated and recoverability is confirmed; clean up only with deliberate authorization."
+    ],
+    "proof": [
+      "Workspace path, branch, base SHA, baseline checks, final integration SHA.",
+      "No data loss of existing working tree or Studio saved file."
+    ],
+    "anti": "Never run broad destructive Git clean/reset commands merely to prepare a workspace."
+  },
+  {
+    "slug": "playbook-discovery",
+    "source": "Superpowers/using-superpowers",
+    "when": "Starting a new task and deciding what process guidance to use",
+    "goal": "Route based on task and risk without inflating context.",
+    "steps": [
+      "Read the master skill once and identify the current stage: meeting, design lock, implementation, debugging, art, review or release.",
+      "Load only relevant original practice references using the routing map; a new task domain may add one or two more.",
+      "Apply instructions in order: owner permissions and current repo rules, approved design, engine requirements, selected playbooks.",
+      "If an optional external skill or connector is absent, use this package and native tooling rather than repeated setup attempts.",
+      "Do not silently change skill settings, global Codex hooks or unrelated project configuration."
+    ],
+    "proof": [
+      "Selection remains stable across adjacent subtasks and can be explained in one sentence when asked."
+    ],
+    "anti": "Never replace game-specific approvals with a broad instruction such as full autonomy."
+  },
+  {
+    "slug": "evidence-gated-completion",
+    "source": "Superpowers/verification-before-completion",
+    "when": "Before saying done, fixed, tested, deployed or ready",
+    "goal": "Make claims no stronger than fresh evidence.",
+    "steps": [
+      "For each completion claim specify the test or artifact that could verify it and the exact expected result.",
+      "Run the test in the relevant environment; read the full result and check failures instead of relying on truncated output.",
+      "Distinguish static syntax, Rojo build, Studio simulation, multi-client runtime, physical device and published private cloud evidence.",
+      "When an unavailable API or human/device check blocks verification, label it unverified and leave the corresponding gate open.",
+      "Before a release claim cross-check latest Git source SHA against actual saved/published Studio scripts and asset templates."
+    ],
+    "proof": [
+      "Verification matrix with test, date, revision, environment, result and evidence path.",
+      "No known blocking issues hidden behind a cumulative pass count."
+    ],
+    "anti": "Never turn user-waived tests into passes or interpret absence of errors as proof of playability."
+  },
+  {
+    "slug": "milestone-planning",
+    "source": "Superpowers/writing-plans",
+    "when": "Converting an approved game design into executable work",
+    "goal": "Build the smallest polished end-to-end vertical slice before scale.",
+    "steps": [
+      "Decompose the spec into gameplay core, network security, playable world, player feedback, progression, art, device QA and release gates.",
+      "For every task define dependencies, exact source ownership, measurable acceptance, test method, failure recovery and exit artifact.",
+      "Prioritize a complete playable loop with progression and repeated sessions before decorative breadth.",
+      "Group tasks so one programmer or agent can finish and verify without touching many unrelated systems.",
+      "Record rejected nice-to-have features and owner decision gates to prevent scope creep during autonomous execution."
+    ],
+    "proof": [
+      "Plan with task IDs, priorities, dependency graph, evidence slots and stop/resume checkpoints.",
+      "Each task ends at a reproducible verification checkpoint."
+    ],
+    "anti": "Do not measure plan completeness by number of features or confuse planning with doing."
+  },
+  {
+    "slug": "skill-authoring-audit",
+    "source": "Superpowers/writing-skills",
+    "when": "Designing, modifying, packaging or validating the reusable skill system",
+    "goal": "Keep each instruction module discoverable, testable and maintainable.",
+    "steps": [
+      "Identify the exact failure the new playbook should prevent, then capture a baseline scenario where generic advice is insufficient.",
+      "Write narrow trigger wording, practical steps, evidence expectations and anti-patterns in original language.",
+      "Test on unrelated Roblox genres and failure conditions; compare behavior with and without the new guidance where tools permit.",
+      "Check no duplicate names, circular routing, broken relative links, licensing/credit errors or excessive default context.",
+      "Separate quick guidance from deep references and scripts; do not require users to install irrelevant dependencies."
+    ],
+    "proof": [
+      "Pressure-scenario test results, static packaging validation and documented limitations.",
+      "Manifest coverage updated for any new or retired playbook."
+    ],
+    "anti": "Do not publish an untested skill as a guaranteed autonomous game builder."
+  },
+  {
+    "slug": "visual-quality-gate",
+    "source": "Impeccable referenced in Upkeep AGENTS.md; source not accessible",
+    "when": "Final visual review or stylization consistency tasks",
+    "goal": "Make a coherent world feel authored rather than randomly assembled.",
+    "steps": [
+      "Select a small reference frame representing the game tone, values, shape language, palette and character-to-world scale.",
+      "Compare playable camera views across menu, first five minutes, representative action and results; inspect clutter, hierarchy and silhouette.",
+      "Correct visual inconsistencies in prioritized order: blocking/readability, asset proportions, material coherence, animation, lighting, then micro-polish.",
+      "Compare improvements to mobile-sized views and the actual in-game render instead of approving only large concept images.",
+      "Keep the art style original and avoid recreating competing Roblox experiences."
+    ],
+    "proof": [
+      "Before/after images or Studio observations with device viewport and actual asset source identity.",
+      "No text clipping, critical icon confusion or decorative occlusion in core routes."
+    ],
+    "anti": "Do not interpret generic visual design advice as permission to import unlicensed assets."
+  }
+]

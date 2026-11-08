@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest one focused improvement or new supported agent workflow
+title: "feat: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: User problem
+      description: What is currently difficult, and for whom?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed change
+      description: Describe the smallest complete useful behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: How would it be tested?
+      description: List concrete acceptance tests or setup environments if applicable.

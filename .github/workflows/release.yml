@@ -1,0 +1,50 @@
+name: Publish release assets (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing Git tag to package
+        type: string
+        required: true
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+          persist-credentials: false
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check tag matches package version
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          test "$RELEASE_TAG" = "v$(cat VERSION)"
+      - name: Unit tests
+        run: python3 -m unittest discover -s scripts/tests -v
+      - name: Verify clean starter
+        run: python3 scripts/verify_package.py
+      - name: Build assets
+        run: python3 scripts/build_release.py
+      - name: Create or refresh release files
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" dist/*.zip dist/SHA256SUMS --clobber
+          else
+            args=()
+            if [[ "$RELEASE_TAG" == *-* ]]; then args+=(--prerelease); fi
+            gh release create "$RELEASE_TAG" dist/*.zip dist/SHA256SUMS --verify-tag \
+              --title "AutoBlox $RELEASE_TAG" --notes-file docs/RELEASE_NOTES.md "${args[@]}"
+          fi

@@ -1,0 +1,5 @@
+{
+  "project": "{{GAME_NAME}}",
+  "assets": [],
+  "notes": "Each entry must identify author, source, license/provenance, editable path, exported path, Roblox template, scale/pivot, tested status and owner."
+}

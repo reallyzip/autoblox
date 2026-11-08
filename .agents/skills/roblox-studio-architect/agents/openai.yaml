@@ -1,0 +1,6 @@
+interface:
+  display_name: "Roblox Studio Architect"
+  short_description: "Original Roblox game design, production, QA and private release supervision"
+  default_prompt: "Run a professional design meeting for my original Roblox game, establish an approved final directive, and then supervise a verified private release candidate using local tools."
+policy:
+  allow_implicit_invocation: true

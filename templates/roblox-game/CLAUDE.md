@@ -1,0 +1,3 @@
+# {{GAME_NAME}} — Claude Code entry point
+
+Follow `AGENTS.md` and the approved game decisions in `docs/`. Activate the canonical Roblox Studio Architect workflow in `.agents/skills/roblox-studio-architect/SKILL.md`, through the project-local Claude skill bridge `.claude/skills/roblox-studio-architect/SKILL.md` when recognized. On first activation, inspect the local environment and offer Roblox Studio and Blender installation plus their MCP setup; verify real read-only tool calls before claiming connected (`docs/MCP_SETUP.md`). All installation/configuration is opt-in. Keep game private and honor explicit owner authorization gates.
