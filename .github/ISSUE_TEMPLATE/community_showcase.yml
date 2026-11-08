@@ -1,0 +1,40 @@
+name: Community showcase
+description: Share a game or playable experiment you built using AutoBlox
+title: "showcase: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing! Include public, permission-safe links only. Do not share auth credentials, private place IDs, or other users' personal information.
+  - type: input
+    id: project
+    attributes:
+      label: Game or prototype title
+      placeholder: Your original Roblox game
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What did you build?
+      description: Describe the core loop and how AutoBlox contributed.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Public demo, video, or source link (optional)
+  - type: textarea
+    id: environment
+    attributes:
+      label: Agent and environment
+      description: Which agent and AutoBlox version? Roblox Studio, Blender and MCP details?
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: What was actually tested?
+      description: Note Studio clients, devices, save/load, known limitations and manual work.
+    validations:
+      required: true
