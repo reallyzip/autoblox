@@ -8,7 +8,7 @@ AutoBlox is a local project template and AI-agent instruction set, not a binary 
 - **Skill only:** [Master skill ZIP](https://github.com/reallyzip/autoblox/releases/download/v0.3.0-preview/autoblox-master-skill-v0.3.0-preview.zip) for an existing repo.
 - **Git clone:** `git clone https://github.com/reallyzip/autoblox.git` then `cd autoblox`.
 
-The ZIP links only work after the release has been published. GitHub's Code → Download ZIP is an alternative after the repository is public.
+Both ZIP links are live in the published v0.3.0-preview release. GitHub's Code → Download ZIP is an alternative for browsing the repository source.
 
 ## macOS and Linux terminal (Python 3.9+)
 
