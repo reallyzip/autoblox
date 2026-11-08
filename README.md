@@ -46,7 +46,7 @@ It is built for people making their **first Roblox game** and creators building 
 
 [Release notes & checksums](https://github.com/reallyzip/autoblox/releases/tag/v0.3.0-preview) · [Browse source code](https://github.com/reallyzip/autoblox) · [All releases](https://github.com/reallyzip/autoblox/releases)
 
-*Release links become active when the repository owner publishes the v0.3.0-preview GitHub release. Until then, use GitHub's Code → Download ZIP once the repository is live.*
+**Available now:** Both ZIPs and the SHA-256 checksum file are published in the [v0.3.0-preview release](https://github.com/reallyzip/autoblox/releases/tag/v0.3.0-preview). This is a preview toolkit: live end-to-end production across all agents is not yet certified.
 
 ## Quick start
 
@@ -230,6 +230,7 @@ Examples: Roblox networking and server authority, Luau, persistence, asset gener
 - [Architecture and production stages](docs/ARCHITECTURE.md)
 - [FAQ](docs/FAQ.md)
 - [Roadmap](docs/ROADMAP.md)
+- [Launch, creator partnerships and discoverability plan](docs/LAUNCH_AND_DISCOVERY.md)
 - [Contributing](CONTRIBUTING.md) · [Security policy](SECURITY.md) · [Code of Conduct](CODE_OF_CONDUCT.md)
 
 Run offline checks before opening an issue or submitting a pull request:
